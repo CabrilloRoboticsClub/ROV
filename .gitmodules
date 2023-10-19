@@ -1,0 +1,3 @@
+[submodule "lib/h264_image_transport"]
+	path = lib/h264_image_transport
+	url = ../../clydemcqueen/h264_image_transport.git

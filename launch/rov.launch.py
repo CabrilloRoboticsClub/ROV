@@ -24,22 +24,30 @@ def generate_launch_description():
             output='screen',
         ),
         Node(
-            package='seahawk2',
-            executable='kinematics',
-            name='kinematics',
-            output='screen',
-            parameters=[
-                {'force_matrix': thruster_matrix},
-                {'force_matrix_rows': len(thruster_matrix_2d)},
-                {'force_matrix_columns': len(thruster_matrix_2d[0])},
-            ],
-        ),
-        Node(
-            package='seahawk2',
-            executable='pwm_interface',
-            name='pwm_interface',
+            package='joy_linux',        # TEMPORARY: I can't get the controller to work
+            executable='joy_linux_node',# in the docker container otherwise, even when
+            name='joy_node',            # I use --device=/dev/input/js0:/dev/input/js0
             output='screen',
         ),
+        # Node(
+        #     package='seahawk2',
+        #     executable='kinematics',
+        #     name='kinematics',
+        #     output='screen',
+        #     # // auto param = this->declare_parameter("thruster_force_matrix", rclcpp::ParameterType::PARAMETER_DOUBLE_ARRAY);
+        #     # // auto param = this->declare_parameter("config", default_value);
+        #     parameters=[
+        #         {'force_matrix': thruster_matrix},
+        #         {'force_matrix_rows': len(thruster_matrix_2d)},
+        #         {'force_matrix_columns': len(thruster_matrix_2d[0])},
+        #     ],
+        # ),
+        # Node(
+        #     package='seahawk2',
+        #     executable='pwm_interface',
+        #     name='pwm_interface',
+        #     output='screen',
+        # ),
     ]
     return LaunchDescription(nodes)
 

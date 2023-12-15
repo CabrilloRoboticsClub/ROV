@@ -1,0 +1,6 @@
+# Call function on control node
+string function	# test
+int32 type			# type of call: 0 off, 1 on, 2 toggle, 3 set absolute, 4 relative change (add)
+float32 value	0	# value to pass with call
+---
+float32 state 0.0

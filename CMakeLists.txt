@@ -13,6 +13,11 @@ endif()
 
 # set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
 
+find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(rclpy REQUIRED)
+
 # FIXME: I'm not sure we need all these
 find_package(ament_cmake_auto REQUIRED)
 find_package(std_msgs REQUIRED)
@@ -25,6 +30,8 @@ find_package(rosidl_default_generators REQUIRED)
 # foreach(rmw_implementation ${rmw_implementations2})
   # find_package("${rmw_implementation}" REQUIRED)
 # endforeach()
+
+# include_directories(include)
 
 ament_auto_find_build_dependencies()
 
@@ -78,6 +85,15 @@ install(
 install(
   DIRECTORY launch
   DESTINATION share/${PROJECT_NAME}
+)
+
+# install Python modules
+ament_python_install_package(seahawk) # module folder
+
+# install Python executables
+install(PROGRAMS
+  scripts/py_node.py
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)
